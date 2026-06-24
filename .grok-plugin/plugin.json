@@ -1,0 +1,14 @@
+{
+  "name": "spider",
+  "version": "1.0.0",
+  "description": "Crawl, scrape, search the web, and automate browsers at scale via the hosted Spider Cloud MCP server, with anti-bot bypass and AI-driven extraction.",
+  "author": {
+    "name": "Spider",
+    "url": "https://spider.cloud"
+  },
+  "repository": "https://github.com/spider-rs/spider-grok-plugin",
+  "homepage": "https://spider.cloud/mcp",
+  "license": "MIT",
+  "keywords": ["spider", "spider cloud", "web scraping", "web crawling", "browser automation", "mcp"],
+  "logo": "assets/logo.svg"
+}

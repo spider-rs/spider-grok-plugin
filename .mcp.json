@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "spider": {
+      "type": "http",
+      "url": "https://mcp.spider.cloud/mcp",
+      "headers": {
+        "Authorization": "Bearer ${SPIDER_API_KEY}"
+      },
+      "note": "Official Spider Cloud hosted MCP server. Set the SPIDER_API_KEY environment variable to your Spider API key (get one at https://spider.cloud/api-keys). Tools: crawl, scrape, search, links, screenshot, unblocker, transform, credits, AI extraction, and remote browser automation."
+    }
+  }
+}
