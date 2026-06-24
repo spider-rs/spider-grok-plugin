@@ -23,10 +23,11 @@ interactive browser sessions.
 
 ## Setup
 
-The Spider MCP server is hosted at `https://mcp.spider.cloud/mcp`. Authentication
-uses a Bearer API key supplied via the `SPIDER_API_KEY` environment variable. Get
-a key at https://spider.cloud/api-keys. Core tools run on pay-per-use credits;
-the AI tools require an [AI subscription](https://spider.cloud/ai/pricing).
+The Spider MCP server is hosted at `https://mcp.spider.cloud/mcp` and uses OAuth:
+on first connection the client prompts for browser authorization — no API key to
+paste (a `SPIDER_API_KEY` Bearer token from https://spider.cloud/api-keys works as
+an alternative). Core tools run on pay-per-use credits; the AI tools require an
+[AI subscription](https://spider.cloud/ai/pricing).
 
 ## Picking the right tool
 

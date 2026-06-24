@@ -15,34 +15,40 @@ bypass, proxy rotation, and AI-driven extraction.
 
 ## Authentication
 
-The Spider MCP server authenticates with a **Bearer API key**. The bundled
-[`.mcp.json`](.mcp.json) reads it from the `SPIDER_API_KEY` environment variable:
+The Spider MCP server uses **OAuth** — on first connection the agent prompts you
+to authorize in the browser, with no API key to paste. The bundled
+[`.mcp.json`](.mcp.json) just points at the hosted endpoint:
 
 ```json
 {
   "mcpServers": {
     "spider": {
       "type": "http",
-      "url": "https://mcp.spider.cloud/mcp",
-      "headers": { "Authorization": "Bearer ${SPIDER_API_KEY}" }
+      "url": "https://mcp.spider.cloud/mcp"
     }
   }
 }
 ```
 
-Set the variable before launching Grok Build:
+The endpoint advertises OAuth via [protected-resource metadata](https://mcp.spider.cloud/.well-known/oauth-protected-resource/mcp)
+with dynamic client registration and PKCE, so MCP clients authorize automatically.
 
-```bash
-export SPIDER_API_KEY="your-api-key"   # from https://spider.cloud/api-keys
+**API-key alternative.** The server also accepts a Bearer API key if you prefer
+not to use OAuth — add an `Authorization` header to the config:
+
+```json
+"headers": { "Authorization": "Bearer ${SPIDER_API_KEY}" }
 ```
+
+with `SPIDER_API_KEY` from https://spider.cloud/api-keys.
 
 Core tools run on pay-per-use credits (no subscription required). The AI tools
 require an [AI subscription](https://spider.cloud/ai/pricing).
 
 ## Network & credentials (for review)
 
-- **Endpoint called:** `https://mcp.spider.cloud/mcp` (the official Spider Cloud hosted MCP server). No other network endpoints.
-- **Credential:** `SPIDER_API_KEY`, sent only as the `Authorization: Bearer` header to the endpoint above. Nothing is read from the filesystem and no telemetry is collected by this plugin.
+- **Endpoint called:** `https://mcp.spider.cloud/mcp` (the official Spider Cloud hosted MCP server) and its OAuth discovery/authorization endpoints under the same host. No other network endpoints.
+- **Credential:** none stored by the plugin. Auth is OAuth (browser authorization, tokens managed by the MCP client) or, optionally, a user-supplied `SPIDER_API_KEY` sent only as the `Authorization: Bearer` header to the endpoint above. Nothing is read from the filesystem and no telemetry is collected by this plugin.
 
 ## License
 
